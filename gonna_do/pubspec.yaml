@@ -7,19 +7,33 @@ environment:
   sdk: ">=2.18.0 <3.0.0"
   flutter: 3.3.8
 
-dependencies:
-  bloc: ^8.1.0
+
+# ! The way to sort pub dependencies is to put all the dependencies in an alphabetical order!
+# ! Currently the lint rule is ignored inside the analysis_options.yaml file!
+dependencies: 
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.1
   flutter_localizations:
     sdk: flutter
+
+  # Local Packages -->
+  local_storage_gonna_dos_api:
+    path: packages/local_storage_gonna_dos_api
+  gonna_dos_api:
+    path: packages/gonna_dos_api
+  gonna_dos_repository:
+    path: packages/gonna_dos_repository
+
+  # Internet Packages -->
+  bloc: ^8.1.0
+  flutter_bloc: ^8.1.1
   intl: ^0.17.0
 
 dev_dependencies:
-  bloc_test: ^9.1.0
   flutter_test:
     sdk: flutter
+
+  bloc_test: ^9.1.0
   mocktail: ^0.3.0
   very_good_analysis: ^3.1.0
 

@@ -149,6 +149,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  gonna_dos_api:
+    dependency: "direct main"
+    description:
+      path: "packages/gonna_dos_api"
+      relative: true
+    source: path
+    version: "0.1.0+1"
+  gonna_dos_repository:
+    dependency: "direct main"
+    description:
+      path: "packages/gonna_dos_repository"
+      relative: true
+    source: path
+    version: "0.1.0+1"
   http_multi_server:
     dependency: transitive
     description:
@@ -184,6 +198,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.4"
+  local_storage_gonna_dos_api:
+    dependency: "direct main"
+    description:
+      path: "packages/local_storage_gonna_dos_api"
+      relative: true
+    source: path
+    version: "0.1.0+1"
   logging:
     dependency: transitive
     description:

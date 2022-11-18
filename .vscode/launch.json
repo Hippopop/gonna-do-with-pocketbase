@@ -1,0 +1,28 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "gonna_do (debug mode)",
+            "cwd": "gonna_do",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main_development.dart"
+        },
+        {
+            "name": "gonna_do (staging mode)",
+            "cwd": "gonna_do",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            "program": "lib/main_staging.dart"
+        },
+        {
+            "name": "gonna_do (production mode)",
+            "cwd": "gonna_do",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            "program": "lib/main_production.dart"
+        }
+    ]
+}
