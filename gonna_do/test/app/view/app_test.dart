@@ -6,13 +6,23 @@
 // https://opensource.org/licenses/MIT.
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:gonna_do/app/app.dart';
-import 'package:gonna_do/counter/counter.dart';
+import 'package:gonna_do/src/features/app/app.dart';
+import 'package:gonna_do/src/features/counter/counter.dart';
+import 'package:gonna_dos_repository/gonna_dos_repository.dart';
+import 'package:local_storage_gonna_dos_api/local_storage_gonna_dos_api.dart';
 
 void main() {
   group('App', () {
     testWidgets('renders CounterPage', (tester) async {
-      await tester.pumpWidget(const App());
+      final gonnaDosApi = LocalStorageGonnaDosApi(
+        plugin: await SharedPreferences.getInstance(),
+      );
+      final gonnaDosRepository = GonnaDosRepository(gonnaDosApi: gonnaDosApi);
+      await tester.pumpWidget(
+        App(
+          gonnaDosRepository: gonnaDosRepository,
+        ),
+      );
       expect(find.byType(CounterPage), findsOneWidget);
     });
   });

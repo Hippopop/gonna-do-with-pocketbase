@@ -8,4 +8,5 @@
 /// A repository that handles all the requests related Gonna Dos
 library gonna_dos_repository;
 
+export 'package:gonna_dos_api/gonna_dos_api.dart' show GonnaDo;
 export 'src/gonna_dos_repository.dart';

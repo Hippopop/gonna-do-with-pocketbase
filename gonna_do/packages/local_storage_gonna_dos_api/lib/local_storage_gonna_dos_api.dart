@@ -8,4 +8,5 @@
 /// A Flutter implementation of the GonnaDos Api that uses local storage.
 library local_storage_gonna_dos_api;
 
+export 'package:shared_preferences/shared_preferences.dart';
 export 'src/local_storage_gonna_dos_api.dart';

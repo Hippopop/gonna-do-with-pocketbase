@@ -10,6 +10,9 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
+import 'package:gonna_do/src/features/app/app.dart';
+import 'package:gonna_dos_api/gonna_dos_api.dart';
+import 'package:gonna_dos_repository/gonna_dos_repository.dart';
 
 class AppBlocObserver extends BlocObserver {
   @override
@@ -25,15 +28,20 @@ class AppBlocObserver extends BlocObserver {
   }
 }
 
-Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
+Future<void> bootstrap({required GonnaDosApi gonnaDosApi}) async {
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
 
   Bloc.observer = AppBlocObserver();
+  final gonnaDosRepository = GonnaDosRepository(gonnaDosApi: gonnaDosApi);
 
   await runZonedGuarded(
-    () async => runApp(await builder()),
+    () async => runApp(
+      App(
+        gonnaDosRepository: gonnaDosRepository,
+      ),
+    ),
     (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
   );
 }
