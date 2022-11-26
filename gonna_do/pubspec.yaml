@@ -23,6 +23,8 @@ dependencies:
     path: packages/gonna_dos_api
   gonna_dos_repository:
     path: packages/gonna_dos_repository
+  pocketbase_auth_api:
+    path: packages/pocketbase_auth_api
 
   # Internet Packages -->
   bloc: ^8.1.0

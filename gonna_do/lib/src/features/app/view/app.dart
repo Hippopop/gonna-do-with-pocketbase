@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gonna_do/l10n/l10n.dart';
 import 'package:gonna_do/src/features/app/view/theme_settings.dart';
-import 'package:gonna_do/src/features/counter/counter.dart';
+// import 'package:gonna_do/src/features/counter/counter.dart';
 import 'package:gonna_do/src/features/home/home.dart';
 import 'package:gonna_dos_repository/gonna_dos_repository.dart';
 

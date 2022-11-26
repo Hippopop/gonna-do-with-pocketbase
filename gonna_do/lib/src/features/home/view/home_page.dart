@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gonna_do/src/features/gonna_dos_overview/views/gonna_dos_overview_page.dart';
 import 'package:gonna_do/src/features/home/cubit/home_cubit.dart';
+import 'package:pocketbase_auth_api/pocketbase_auth_api.dart';
 
 import '../../edit_gonna_do/edit_gonna_do.dart';
 import '../../stats/stats.dart';
@@ -33,8 +36,12 @@ class HomeView extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         key: const Key('homeView_addGonnaDo_floatingActionButton'),
-        onPressed: () {
-          Navigator.of(context).push(EditGonnaDoPage.route());
+        onPressed: () async {
+          // Navigator.of(context).push(EditGonnaDoPage.route());
+          final x = PocketbaseAuthApi.initiate();
+          final  a = await x.login('mostafijul929@gmail.com', "123456789");
+          // final y = await x.isUser("banger@gmail.com");
+          log(a!.toJson().toString());
         },
         child: const Icon(Icons.add),
       ),

@@ -15,5 +15,6 @@ Future<void> main() async {
   final gonnaDoApi = LocalStorageGonnaDosApi(
     plugin: await SharedPreferences.getInstance(),
   );
+  
   await bootstrap(gonnaDosApi: gonnaDoApi);
 }
