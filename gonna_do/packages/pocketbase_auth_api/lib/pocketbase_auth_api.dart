@@ -9,5 +9,4 @@
 ///  the application.
 library pocketbase_auth_api;
 
-export 'src/constant/status.dart';
 export 'src/pocketbase_auth_api.dart';

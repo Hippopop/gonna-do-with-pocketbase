@@ -11,7 +11,6 @@ import 'dart:developer';
 import 'package:auth_api/auth_api.dart';
 import 'package:pocketbase/pocketbase.dart';
 import 'package:pocketbase_auth_api/src/constant/server_constants.dart';
-import 'package:pocketbase_auth_api/src/constant/status.dart';
 
 /// {@template pocketbase_auth_api}
 /// The interface provided by the pocketbase SDK to authenticate a valid user of
@@ -81,9 +80,8 @@ class PocketbaseAuthApi extends AuthApi {
   }
 
   @override
-  Future<void> logout() {
-    // TODO: implement logout
-    throw UnimplementedError();
+  Future<void> logout() async {
+     pocketbase.authStore.clear();
   }
 
   @override
@@ -93,9 +91,8 @@ class PocketbaseAuthApi extends AuthApi {
   }
 
   @override
-  Future<void> requestChangePassword() {
-    // TODO: implement requestChangePassword
-    throw UnimplementedError();
+  Future<void> requestChangePassword() async {
+    
   }
 
   @override
@@ -117,14 +114,32 @@ class PocketbaseAuthApi extends AuthApi {
   /// 🔎 Checks if the given identifier belongs to any existing user!
   @override
   Future<bool> isUser(String indentity) async {
-    final a = await userCollection.getList(
-      filter: "email='$indentity'",
-      perPage: 5,
-      page: 1,
-    );
-    log(a.toJson().toString());
-    log(a.items.length.toString());
-    return a.items.isNotEmpty;
+    try {
+      final a = await userCollection.getList(
+        filter: "email='$indentity'",
+        perPage: 5,
+        page: 1,
+      );
+      log(a.toJson().toString());
+      log(a.items.length.toString());
+      return a.items.isNotEmpty;
+    } on ClientException catch (exception, stracktrace) {
+      log(
+        name: exception.statusCode.toString(),
+        exception.response.toString(),
+        level: 2000,
+        stackTrace: stracktrace,
+      );
+      rethrow;
+    } catch (error, strack) {
+      log(
+        name: 'Unexpected Error!',
+        error.toString(),
+        level: 2000,
+        stackTrace: strack,
+      );
+      throw ConnectionError(msg: error.toString(), stracktrace: strack);
+    }
   }
 
   /// 📝 (register/create)s a user to the user collection.
@@ -177,10 +192,10 @@ class PocketbaseAuthApi extends AuthApi {
         level: 2000,
         stackTrace: stracktrace,
       );
-      throw ClientException();
+      rethrow;
     } catch (error, strack) {
       log(
-        name: 'Possible Connection Error',
+        name: 'Unexpected Error!',
         error.toString(),
         level: 2000,
         stackTrace: strack,
@@ -245,6 +260,7 @@ log(pocketbase.authStore.model.toString());
 
 ///
 class ConnectionError implements Exception {
+  ///
   ConnectionError({
     required this.msg,
     StackTrace? stracktrace,
@@ -252,10 +268,10 @@ class ConnectionError implements Exception {
     _init(stracktrace);
   }
 
-  /// Error msg on user error!
+  /// Error msg!
   final String msg;
 
   void _init(StackTrace? trace) {
-    dev.log(name: '****', msg, level: 2000, stackTrace: trace);
+    dev.log(name: '***', msg, level: 2000, stackTrace: trace);
   }
 }
