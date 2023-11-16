@@ -11,8 +11,10 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gonna_do/src/features/app/app.dart';
+import 'package:gonna_do/src/features/authentication/login/views/oni/rive_oni.dart';
 import 'package:gonna_dos_api/gonna_dos_api.dart';
 import 'package:gonna_dos_repository/gonna_dos_repository.dart';
+import 'package:rive/rive.dart';
 
 class AppBlocObserver extends BlocObserver {
   @override
@@ -35,11 +37,12 @@ Future<void> bootstrap({required GonnaDosApi gonnaDosApi}) async {
 
   Bloc.observer = AppBlocObserver();
   final gonnaDosRepository = GonnaDosRepository(gonnaDosApi: gonnaDosApi);
-
+final Artboard artboard = (await RiveOni.cachedAnimation).mainArtboard;
   await runZonedGuarded(
     () async => runApp(
       App(
         gonnaDosRepository: gonnaDosRepository,
+        artboard: artboard,
       ),
     ),
     (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),

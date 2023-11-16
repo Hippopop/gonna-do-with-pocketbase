@@ -11,7 +11,6 @@ import 'package:local_storage_gonna_dos_api/local_storage_gonna_dos_api.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   final gonnaDoApi = LocalStorageGonnaDosApi(
     plugin: await SharedPreferences.getInstance(),
   );
